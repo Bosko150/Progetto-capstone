@@ -4,7 +4,7 @@ import HomeComponent from "./HomeComponent";
 
 const HomePage = () => {
   return (
-    <Container fluid className="homepage-container">
+    <Container fluid className="homepage-container px-0">
       <MyNavbar />
       <HomeComponent />
     </Container>
