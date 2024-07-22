@@ -1,0 +1,103 @@
+.card {
+  z-index: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  max-width: 400px; // Dimensione massima per le card
+  position: relative; // Aggiunto per posizionare .percentage assolutamente
+
+  img {
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+  }
+
+  .percentage {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-size: 13px;
+    font-weight: 500;
+    position: absolute; // Posizione assoluta rispetto al contenitore
+    bottom: 35px;
+    left: 0;
+    border: 1px solid rgb(250, 53, 112);
+    padding: 2px;
+    border-top-right-radius: 10px;
+    background-color: rgb(250, 53, 112);
+    z-index: 2; // Assicurati che l'etichetta sia sopra l'immagine
+  }
+
+  &:hover {
+    scale: 1;
+    transform-origin: center center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  &:hover .percentage {
+    visibility: hidden;
+  }
+
+  video {
+    width: 100%;
+    min-height: 100%; // Mantiene il rapporto di aspetto
+    display: block;
+    border-radius: 15px;
+    margin-bottom: 4px;
+  }
+}
+
+.price-info {
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+  }
+
+  color: rgb(243, 241, 241);
+  font-weight: 100;
+  font-size: 14px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  backdrop-filter: blur(100px);
+  background-color: transparent;
+  border: none;
+  //border-bottom: 1px solid rgba(154, 205, 50, 0.6);
+  border-radius: 10px;
+  position: relative;
+
+  .discount_price {
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .full_price {
+    color: rgb(221, 221, 221);
+    text-decoration: line-through;
+    font-size: 14px;
+    align-self: center;
+    position: absolute;
+    right: 60px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    &:hover {
+      scale: 1;
+      transform-origin: center center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    &:hover .percentage {
+      visibility: hidden;
+    }
+  }
+}
