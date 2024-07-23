@@ -1,0 +1,13 @@
+.trending-title {
+  color: white;
+  .trending-arrow {
+    color: rgb(101, 108, 194);
+  }
+  &:hover {
+    color: rgb(100, 100, 252);
+    cursor: pointer;
+    .trending-arrow {
+      color: rgb(239, 239, 239);
+    }
+  }
+}

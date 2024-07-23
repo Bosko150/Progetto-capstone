@@ -1,0 +1,53 @@
+.col-left img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+body {
+  color: white;
+}
+
+.steam-banner {
+  background-color: rgba(7, 7, 45, 0.645);
+  padding: 13px;
+  border-radius: 35px;
+}
+
+.old-price {
+  text-decoration: line-through;
+}
+
+.discount {
+  color: rgb(250, 53, 112);
+}
+
+.new-price {
+  font-size: 30px;
+}
+
+.price span {
+  margin-right: 5px;
+}
+
+.col-right {
+  background-color: rgba(10, 5, 28, 0.169);
+  border-radius: 10px;
+}
+
+.add-to-cart {
+  background-color: rgb(250, 53, 112);
+  color: white;
+  border: none;
+  font-weight: 500;
+  padding: 0.5rem 4rem;
+  cursor: pointer;
+}
+
+.game-description {
+  color: rgba(146, 187, 250, 0.535);
+}
+
+.game-infos {
+  color: rgba(146, 187, 250, 0.535);
+  font-weight: 400;
+}

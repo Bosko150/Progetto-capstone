@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "./GameCard.scss";
 
 const GameCard = ({ game }) => {
