@@ -51,3 +51,60 @@ body {
   color: rgba(146, 187, 250, 0.535);
   font-weight: 400;
 }
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.carousel-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.carousel-inner {
+  overflow: hidden;
+}
+.screenshot {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-body img {
+  width: 100%;
+  height: auto; /* Mantieni le proporzioni */
+}
+
+/* Modal - Imposta una dimensione minima */
+.modal-dialog {
+  max-width: 90%; /* Aumenta la dimensione massima del modal */
+}
+
+.modal-dialog.modal-lg {
+  max-width: 80%; /* Aumenta ulteriormente per modal grandi */
+}

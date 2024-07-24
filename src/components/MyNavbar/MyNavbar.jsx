@@ -15,10 +15,10 @@ const MyNavbar = () => {
   };
 
   return (
-    <Navbar className="bg-transparent py-0">
+    <Navbar className=" py-0">
       <Container fluid className="d-flex justify-content-between align-items-center m-0">
         <Navbar.Brand href="#home" className="navbar-brand">
-          <img src={GVlogo} alt="logo" width="80" />
+          <img src={GVlogo} alt="logo" width="60" />
         </Navbar.Brand>
 
         <div className="search-container">

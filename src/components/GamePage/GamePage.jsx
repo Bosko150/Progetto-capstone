@@ -1,4 +1,5 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Col, Container, Row, Button, Modal } from "react-bootstrap";
 import { FaSteam } from "react-icons/fa";
 import { FcCheckmark } from "react-icons/fc";
 import { RiPriceTag3Line } from "react-icons/ri";
@@ -7,6 +8,16 @@ import { FiShoppingCart } from "react-icons/fi";
 import "./GamePage.scss";
 
 const GamePage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+
+  const handleShow = (imageSrc) => {
+    setCurrentImage(imageSrc);
+    setShowModal(true);
+  };
+
+  const handleClose = () => setShowModal(false);
+
   return (
     <Container>
       <Row className="justify-content-between pt-5">
@@ -58,8 +69,145 @@ const GamePage = () => {
           </Row>
         </Col>
       </Row>
+      <h2 className="mt-5">Visuals</h2>
+      <Row className="mt-3">
+        <Col xs={12}>
+          <div className="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/aB_2ZRn9F_k"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </Col>
+      </Row>
+      <Row className="mt-3 align-items-center">
+        <Col xs={6}>
+          <img
+            className="screenshot"
+            src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-1.jpg?v=1715247025"
+            alt="Screenshot 1"
+            onClick={() =>
+              handleShow(
+                "https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-1.jpg?v=1715247025"
+              )
+            }
+          />
+        </Col>
+        <Col xs={6}>
+          <Row>
+            <Col xs={6}>
+              <img
+                className="screenshot"
+                src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-2.jpg?v=1715247025"
+                alt="Screenshot 2"
+                onClick={() =>
+                  handleShow(
+                    "https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-2.jpg?v=1715247025"
+                  )
+                }
+              />
+            </Col>
+            <Col xs={6}>
+              <img
+                className="screenshot"
+                src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-3.jpg?v=1715247025"
+                alt="Screenshot 3"
+                onClick={() =>
+                  handleShow(
+                    "https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-3.jpg?v=1715247025"
+                  )
+                }
+              />
+            </Col>
+            <Col xs={6}>
+              <img
+                className="screenshot"
+                src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-4.jpg?v=1715247025"
+                alt="Screenshot 4"
+                onClick={() =>
+                  handleShow(
+                    "https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-4.jpg?v=1715247025"
+                  )
+                }
+              />
+            </Col>
+            <Col xs={6}>
+              <img
+                className="screenshot"
+                src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-5.jpg?v=1715247025"
+                alt="Screenshot 5"
+                onClick={() =>
+                  handleShow(
+                    "https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-5.jpg?v=1715247025"
+                  )
+                }
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+
+      <Modal show={showModal} onHide={handleClose} centered size="lg">
+        <Modal.Body className="p-0">
+          <img className="d-block w-100" src={currentImage} alt="Enlarged Screenshot" />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
     </Container>
   );
 };
 
 export default GamePage;
+
+{
+  /* <Row className="mt-3">
+        <Col xs={12}>
+          <div className="carousel-wrapper">
+            <Carousel interval={null}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-1.jpg?v=1715247025"
+                  alt="Screenshot 1"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-2.jpg?v=1715247025"
+                  alt="Screenshot 2"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-3.jpg?v=1715247025"
+                  alt="Screenshot 3"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-4.jpg?v=1715247025"
+                  alt="Screenshot 4"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-5.jpg?v=1715247025"
+                  alt="Screenshot 5"
+                />
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Col>
+      </Row> */
+}
