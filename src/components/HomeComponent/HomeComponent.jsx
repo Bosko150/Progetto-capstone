@@ -21,9 +21,11 @@ const HomeComponent = () => {
       <Banner games={games} />
       <Container className="homepage-container">
         <Row className="justify-content-center">
-          <h2 className="trending-title pb-3">
-            Trending <span className="trending-arrow">&gt;</span>
-          </h2>
+          <div className="d-flex">
+            <h2 className="trending-title pb-3">
+              Trending <span className="trending-arrow">&gt;</span>
+            </h2>
+          </div>
 
           {limitedGames.map((game) => (
             <Col key={game.id} xs={12} sm={6} md={4} lg={4} className="mb-4">

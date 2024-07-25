@@ -17,7 +17,7 @@ const MyNavbar = () => {
   return (
     <Navbar className=" py-0">
       <Container fluid className="d-flex justify-content-between align-items-center m-0">
-        <Navbar.Brand href="#home" className="navbar-brand">
+        <Navbar.Brand href="http://localhost:5173/" className="navbar-brand">
           <img src={GVlogo} alt="logo" width="60" />
         </Navbar.Brand>
 

@@ -30,8 +30,10 @@ body {
 }
 
 .col-right {
-  background-color: rgba(10, 5, 28, 0.169);
+  background: rgba(0, 0, 0, 0.732);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.145) 28%, rgba(12, 12, 12, 0.025) 54%, rgba(25, 25, 25, 0) 81%);
   border-radius: 10px;
+  backdrop-filter: blur(8px);
 }
 
 .add-to-cart {
@@ -107,4 +109,19 @@ body {
 
 .modal-dialog.modal-lg {
   max-width: 80%; /* Aumenta ulteriormente per modal grandi */
+}
+.gamepage-banner {
+  height: 40vh;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.gamepage-container {
+  margin-top: 10vh;
 }

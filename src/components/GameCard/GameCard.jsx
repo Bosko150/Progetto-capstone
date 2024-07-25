@@ -10,7 +10,7 @@ const GameCard = ({ game }) => {
       {!showVideo ? (
         <img src={game.gameImg} alt="game image" onMouseEnter={() => setShowVideo(true)} />
       ) : (
-        <a href={`/games/search/1`} onMouseLeave={() => setShowVideo(false)}>
+        <a href={`/games/${game.id}`} onMouseLeave={() => setShowVideo(false)}>
           <video src={game.shortVideoPath} autoPlay loop />
         </a>
       )}
