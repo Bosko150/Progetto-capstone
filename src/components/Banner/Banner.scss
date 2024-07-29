@@ -4,7 +4,7 @@
   color: white;
   padding: 50px 0;
   overflow: hidden;
-  height: 40vh;
+  height: 45vh;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
   cursor: pointer;
 }
@@ -14,4 +14,7 @@
   border-radius: 5px;
   padding: 2px;
   margin-right: 5px;
+}
+.banner-link {
+  text-decoration: none;
 }

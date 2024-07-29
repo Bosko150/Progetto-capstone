@@ -1,37 +1,20 @@
-import React, { useState } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
+import React from "react";
+import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import { FaSearch, FaTimes } from "react-icons/fa";
 import GVlogo from "../../assets/GVlogo.png";
 import "./MyNavbar.scss";
+import SearchBar from "../SearchBar/SearchBar";
 
 const MyNavbar = () => {
-  const [searchExpanded, setSearchExpanded] = useState(false);
-
-  const toggleSearchBar = () => {
-    setSearchExpanded(!searchExpanded);
-  };
-
   return (
-    <Navbar className=" py-0">
+    <Navbar className="py-0">
       <Container fluid className="d-flex justify-content-between align-items-center m-0">
-        <Navbar.Brand href="http://localhost:5173/" className="navbar-brand">
+        <Navbar.Brand href="/" className="navbar-brand">
           <img src={GVlogo} alt="logo" width="60" />
         </Navbar.Brand>
-
-        <div className="search-container">
-          <Form className={`search-form ${searchExpanded ? "expanded" : "collapsed"}`}>
-            <Button variant="outline-success" className="search-button" onClick={toggleSearchBar}>
-              {searchExpanded ? <FaTimes /> : <FaSearch />}
-            </Button>
-            {searchExpanded && (
-              <FormControl type="search" placeholder="Search" className="search-input" aria-label="Search" />
-            )}
-          </Form>
-        </div>
-
+        <SearchBar />
         <div className="navbar-login">
           <Link to="/login">
             <Button>Login</Button>

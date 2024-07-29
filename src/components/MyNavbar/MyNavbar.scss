@@ -4,57 +4,17 @@
   align-items: center;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.05); /* Colore di sfondo semi-trasparente */
-  backdrop-filter: blur(5px); /* Applica l'effetto di sfocatura sullo sfondo */
+  backdrop-filter: blur(15px); /* Applica l'effetto di sfocatura sullo sfondo */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Opzionale: aggiunge una linea di separazione sottile */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-brand {
   flex: 0 1 auto;
-}
-
-.search-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-form {
-  display: flex;
-  align-items: center;
-  transition: width 0.5s;
-}
-
-.search-form.collapsed .search-input {
-  width: 0;
-  padding: 0;
-  border: none;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.search-form.expanded .search-input {
-  width: 200px;
-  padding: 5px;
-  border: 1px solid #ced4da;
-  visibility: visible;
-  opacity: 1;
-}
-
-.search-button {
-  border: none;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-}
-
-.search-input {
-  transition: width 0.5s;
 }
 
 .navbar-login {

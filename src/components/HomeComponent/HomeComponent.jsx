@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGamesAction } from "../../redux/actions";
 import "./HomeComponent.scss";
 import Banner from "../Banner/Banner";
+import { Link } from "react-router-dom";
 
 const HomeComponent = () => {
-  const games = useSelector((state) => state.game.games);
+  const games = useSelector((state) => state.games.games);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,9 +23,11 @@ const HomeComponent = () => {
       <Container className="homepage-container">
         <Row className="justify-content-center">
           <div className="d-flex">
-            <h2 className="trending-title pb-3">
-              Trending <span className="trending-arrow">&gt;</span>
-            </h2>
+            <Link to="/search" className="trending-title-link">
+              <h2 className="trending-title pb-3">
+                Trending <span className="trending-arrow">&gt;</span>
+              </h2>
+            </Link>
           </div>
 
           {limitedGames.map((game) => (
