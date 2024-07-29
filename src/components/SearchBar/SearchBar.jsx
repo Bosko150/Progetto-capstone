@@ -1,6 +1,8 @@
+// src/components/SearchBar/SearchBar.js
 import React, { useState } from "react";
-import "./SearchBar.scss"; // Assicurati che il file SCSS o CSS contenga gli stili necessari
 import { useNavigate } from "react-router-dom";
+import { FaDeleteLeft } from "react-icons/fa6";
+import "./SearchBar.scss";
 
 const SearchBar = () => {
   const [isChecked, setIsChecked] = useState(true);
@@ -21,10 +23,10 @@ const SearchBar = () => {
     }
   };
 
-  // const handleResetClick = () => {
-  //   setSearch("");
-  //   navigate("/search"); // Resetta la ricerca e la query nella URL
-  // };
+  const handleClear = () => {
+    setSearch("");
+    navigate("/search"); // Resetta la ricerca e la query nella URL
+  };
 
   return (
     <div className="searchbar-container">
@@ -42,6 +44,11 @@ const SearchBar = () => {
           value={search}
           onChange={handleSearchChange}
         />
+        {search && !isChecked && (
+          <div className="clear-icon" onClick={handleClear}>
+            <FaDeleteLeft />
+          </div>
+        )}
       </div>
     </div>
   );

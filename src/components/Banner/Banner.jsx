@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const getRandomGame = (games) => {
   if (!games || games.length === 0) return null;
 
-  const maxIndex = Math.min(2, games.length - 1);
+  const maxIndex = Math.min(4, games.length - 1);
   const randomIndex = Math.floor(Math.random() * (maxIndex + 1));
   return games[randomIndex];
 };

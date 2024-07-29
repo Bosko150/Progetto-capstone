@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import GVlogo from "../../assets/GVlogo.png";
 import "./MyNavbar.scss";
 import SearchBar from "../SearchBar/SearchBar";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const MyNavbar = () => {
   return (
