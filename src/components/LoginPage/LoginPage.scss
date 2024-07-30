@@ -1,0 +1,22 @@
+.login-container {
+  height: 100vh; // Assicurati che l'intera altezza della viewport sia utilizzata
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+}
+
+.login-button {
+  width: 100%;
+  background-color: rgb(250, 53, 112);
+  border: none;
+}
+
+.wallpaper-column {
+  background-image: url("https://www.instant-gaming.com/themes/igv2/modules/register/images/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}

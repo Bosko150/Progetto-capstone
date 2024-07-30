@@ -9,6 +9,7 @@ import "./GamePage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleGameAction } from "../../redux/actions";
+import MyFooter from "../MyFooter/MyFooter";
 
 const GamePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -153,6 +154,7 @@ const GamePage = () => {
           ))}
         </Row>
       </Container>
+      <MyFooter />
     </>
   );
 };

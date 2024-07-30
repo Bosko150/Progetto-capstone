@@ -1,12 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import GVlogo from "../../assets/GVlogo.png";
 import "./MyNavbar.scss";
 import SearchBar from "../SearchBar/SearchBar";
-import { FaDeleteLeft } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
 
 const MyNavbar = () => {
   return (
@@ -17,8 +16,8 @@ const MyNavbar = () => {
         </Navbar.Brand>
         <SearchBar />
         <div className="navbar-login">
-          <Link to="/login">
-            <Button>Login</Button>
+          <Link to="http://localhost:5173/login">
+            <CgProfile size={33} className="login-icon" />
           </Link>
         </div>
       </Container>

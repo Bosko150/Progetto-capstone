@@ -4,8 +4,8 @@ import HomePage from "./components/HomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GamePage from "./components/GamePage/GamePage";
 import MyNavbar from "./components/MyNavbar/MyNavbar";
-import MyFooter from "./components/MyFooter/MyFooter";
 import SearchPage from "./components/SearchPage/SearchPage";
+import LoginPage from "./components/LoginPage/LoginPage";
 // import MyNavbar from "./components/MyNavbar";
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/games/:gameId" element={<GamePage />} />
           <Route path="/search/" element={<SearchPage />} />
+          <Route path="/login/" element={<LoginPage />} />
         </Routes>
-        <MyFooter />
       </BrowserRouter>
     </>
   );
