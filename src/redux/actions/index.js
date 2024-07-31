@@ -4,6 +4,10 @@ export const GET_GAME = "GET_GAME";
 export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
 export const GET_FILTERED_GAMES = "GET_FILTERED_GAMES";
 export const NO_RESULTS_FOUND = "NO_RESULTS_FOUND";
+export const GET_USER_LOGGED_PROFILE = "GET_USER_LOGGED_PROFILE";
+export const GET_USER_LOGGED_TOKEN = "GET_USER_LOGGED_TOKEN";
+export const TOGGLE_IS_LOGGED = "TOGGLE_IS_LOGGED";
+export const TOGGLE_IS_LOGGED_OUT = "TOGGLE_IS_LOGGED_OUT";
 
 export const fetchGamesAction = () => {
   return async (dispatch) => {
@@ -70,6 +74,42 @@ export const fetchFilteredGamesAction = ({ title, genre, orderBy, minPrice, maxP
         type: NO_RESULTS_FOUND,
         payload: false,
       });
+    }
+  };
+};
+
+export const fetchUserAction = (loginObject, navigate, setError) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", loginObject);
+      console.log("Response:", response.data);
+      dispatch({
+        type: GET_USER_LOGGED_TOKEN,
+        payload: response.data,
+      });
+      const token = response.data.accessToken;
+      dispatch(fetchUserInfoAction(token));
+      navigate("/");
+    } catch (err) {
+      console.error("Error logging in:", err.response?.data?.message || err.message);
+      setError(err.response?.data?.message || "An error occurred during login.");
+    }
+  };
+};
+
+export const fetchUserInfoAction = (token) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:3001/users/me", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log("User Info Response:", response.data);
+      dispatch({
+        type: GET_USER_LOGGED_PROFILE,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.error("Error fetching user info:", err.response?.data?.message || err.message);
     }
   };
 };

@@ -4,18 +4,19 @@ import { FaSteam } from "react-icons/fa";
 import { FcCheckmark } from "react-icons/fc";
 import { RiPriceTag3Line } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
-
-import "./GamePage.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchSingleGameAction } from "../../redux/actions";
 import MyFooter from "../MyFooter/MyFooter";
+import "./GamePage.scss";
 
 const GamePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const gameData = useSelector((state) => state.single_game.game);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const params = useParams();
   const gameId = params.gameId;
 
@@ -30,7 +31,14 @@ const GamePage = () => {
 
   const handleClose = () => setShowModal(false);
 
-  // Aggiungi un controllo per verificare la presenza dei dati
+  const handleAddToCart = () => {
+    if (isLoggedIn) {
+      // Logica per aggiungere al carrello
+    } else {
+      navigate("/login");
+    }
+  };
+
   if (!gameData || !gameData.title) {
     return <div>Loading...</div>;
   }
@@ -63,7 +71,7 @@ const GamePage = () => {
               <span className="discount">{gameData.percentageDiscount}</span>
               <span className="new-price">{gameData.discountedPrice}€</span>
             </div>
-            <Button className="add-to-cart mt-5">
+            <Button className="add-to-cart mt-5" onClick={handleAddToCart}>
               <FiShoppingCart /> Add to cart
             </Button>
           </Col>
@@ -135,11 +143,6 @@ const GamePage = () => {
           <Modal.Body className="p-0">
             <img className="d-block w-100" src={currentImage} alt="Enlarged Screenshot" />
           </Modal.Body>
-          {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer> */}
         </Modal>
         <h2>Description</h2>
         <Row className="mt-4">
@@ -160,47 +163,3 @@ const GamePage = () => {
 };
 
 export default GamePage;
-
-/* <Row className="mt-3">
-        <Col xs={12}>
-          <div className="carousel-wrapper">
-            <Carousel interval={null}>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-1.jpg?v=1715247025"
-                  alt="Screenshot 1"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-2.jpg?v=1715247025"
-                  alt="Screenshot 2"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-3.jpg?v=1715247025"
-                  alt="Screenshot 3"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-4.jpg?v=1715247025"
-                  alt="Screenshot 4"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://gaming-cdn.com/images/products/11030/screenshot/v-rising-pc-game-steam-wallpaper-5.jpg?v=1715247025"
-                  alt="Screenshot 5"
-                />
-              </Carousel.Item>
-            </Carousel>
-          </div>
-        </Col>
-      </Row> */

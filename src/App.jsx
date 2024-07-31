@@ -6,6 +6,7 @@ import GamePage from "./components/GamePage/GamePage";
 import MyNavbar from "./components/MyNavbar/MyNavbar";
 import SearchPage from "./components/SearchPage/SearchPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
 // import MyNavbar from "./components/MyNavbar";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/games/:gameId" element={<GamePage />} />
           <Route path="/search/" element={<SearchPage />} />
           <Route path="/login/" element={<LoginPage />} />
+          <Route path="/register/" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </>

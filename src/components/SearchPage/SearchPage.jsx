@@ -26,28 +26,15 @@ const SearchPage = () => {
   const [maxPrice, setMaxPrice] = useState("");
 
   useEffect(() => {
-    if (searchQuery || genre || orderBy || minPrice || maxPrice) {
-      dispatch(
-        fetchFilteredGamesAction({
-          title: searchQuery,
-          genre,
-          orderBy,
-          minPrice,
-          maxPrice,
-        })
-      );
-    } else {
-      // Se non ci sono filtri, richiedi tutti i giochi
-      dispatch(
-        fetchFilteredGamesAction({
-          title: "",
-          genre: "",
-          orderBy: "",
-          minPrice: "",
-          maxPrice: "",
-        })
-      );
-    }
+    dispatch(
+      fetchFilteredGamesAction({
+        title: searchQuery,
+        genre,
+        orderBy,
+        minPrice,
+        maxPrice,
+      })
+    );
   }, [dispatch, searchQuery, genre, orderBy, minPrice, maxPrice]);
 
   const handleGenreChange = (e) => setGenre(e.target.value);
@@ -60,10 +47,9 @@ const SearchPage = () => {
     setOrderBy("");
     setMinPrice("");
     setMaxPrice("");
-    // Richiedi tutti i giochi quando i filtri sono resettati
     dispatch(
       fetchFilteredGamesAction({
-        title: "", // Resetta anche il titolo della ricerca
+        title: searchQuery,
         genre: "",
         orderBy: "",
         minPrice: "",
@@ -72,16 +58,16 @@ const SearchPage = () => {
     );
   };
 
-  let gamesToDisplay = filteredGames.length > 0 ? filteredGames : games;
+  const gamesToDisplay = filteredGames.length > 0 ? filteredGames : games;
 
   return (
     <>
       <Container className="homepage-container">
-        <Row className="searchpage-dropdowns">
-          <Col xs={12} md={6} lg={3}>
+        <Row className="searchpage-dropdowns justify-content-center">
+          <Col class xs={12} md={6} lg={2}>
             <Form.Group controlId="genreSelect">
               <Form.Label>Genre</Form.Label>
-              <Form.Control as="select" value={genre} onChange={handleGenreChange}>
+              <Form.Control as="select" value={genre} onChange={handleGenreChange} className="short-form-control">
                 <option value="">All</option>
                 <option value="Action">Action</option>
                 <option value="Adventure">Adventure</option>
@@ -98,10 +84,10 @@ const SearchPage = () => {
               </Form.Control>
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={3}>
+          <Col xs={12} md={6} lg={2}>
             <Form.Group controlId="orderBySelect">
               <Form.Label>Order By</Form.Label>
-              <Form.Control as="select" value={orderBy} onChange={handleOrderByChange}>
+              <Form.Control as="select" value={orderBy} onChange={handleOrderByChange} className="short-form-control">
                 <option value="">None</option>
                 <option value="Price Ascending">Price Ascending</option>
                 <option value="Price Descending">Price Descending</option>
@@ -110,16 +96,28 @@ const SearchPage = () => {
               </Form.Control>
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={3}>
+          <Col xs={12} md={6} lg={1}>
             <Form.Group controlId="minPrice">
               <Form.Label>Min Price</Form.Label>
-              <Form.Control type="number" placeholder="0" value={minPrice} onChange={handleMinPriceChange} />
+              <Form.Control
+                type="number"
+                placeholder="0"
+                value={minPrice}
+                onChange={handleMinPriceChange}
+                className="short-form-control-2"
+              />
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={3}>
+          <Col xs={12} md={6} lg={1}>
             <Form.Group controlId="maxPrice">
               <Form.Label>Max Price</Form.Label>
-              <Form.Control type="number" placeholder="200" value={maxPrice} onChange={handleMaxPriceChange} />
+              <Form.Control
+                type="number"
+                placeholder="200"
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
+                className="short-form-control-2"
+              />
             </Form.Group>
           </Col>
           <Col xs={12} className="text-center mt-5">

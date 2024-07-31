@@ -1,14 +1,16 @@
-.login-container {
-  height: 100vh; // Assicurati che l'intera altezza della viewport sia utilizzata
+// SCSS per la Registration Page
+
+.register-container {
+  height: 100vh;
 }
 
-.login-form {
+.register-form {
   width: 100%;
   max-width: 300px;
   padding: 20px;
 }
 
-.login-button {
+.register-button {
   width: 100%;
   background-color: rgb(250, 53, 112);
   border: none;
@@ -20,7 +22,8 @@
   background-position: center;
   height: 100vh;
 }
-.register-link {
+
+.login-link {
   font-size: small;
   color: white;
   text-decoration: none;
@@ -34,14 +37,24 @@
   position: relative;
   font-size: 0.8rem;
   font-weight: bold;
-  border: 1px solid rgba(255, 0, 0, 0.5);
-  background-color: rgba(255, 0, 0, 0.1);
-  color: red;
   border-radius: 5px;
   padding: 10px;
   text-align: center;
   margin-bottom: 1rem;
+
+  &.alert-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: red;
+  }
+
+  &.alert-success {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    color: green;
+  }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;

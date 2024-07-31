@@ -1,15 +1,35 @@
-import React, { useState } from "react";
-import { Col, Container, Row, Form, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import "./LoginPage.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUserAction } from "../../redux/actions";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const handleLogin = () => {
-    // Logica di gestione del login
-    console.log("Email:", email);
-    console.log("Password:", password);
+    if (email && password) {
+      const loginObject = { email, password };
+      console.log("Login Object:", loginObject);
+      dispatch(fetchUserAction(loginObject, navigate, setError));
+    } else {
+      setError("Please enter both email and password.");
+    }
   };
 
   return (
@@ -17,6 +37,11 @@ const LoginPage = () => {
       <Row>
         <Col className="login-column d-flex justify-content-center align-items-center" xs={6}>
           <Form className="login-form">
+            {error && (
+              <Alert variant="danger" className="custom-alert">
+                {error}
+              </Alert>
+            )}
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Control type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </Form.Group>
@@ -28,10 +53,13 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex flex-column justify-content-center">
               <Button className="login-button" onClick={handleLogin}>
                 Login
               </Button>
+              <Link className="mt-2 register-link" to="/register">
+                <p>Not a member yet?</p>
+              </Link>
             </div>
           </Form>
         </Col>
