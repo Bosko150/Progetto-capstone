@@ -6,7 +6,7 @@ import { RiPriceTag3Line } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchSingleGameAction, addGameToCartAction, fetchUserCartAction } from "../../redux/actions";
+import { fetchSingleGameAction, addGameToCartAction } from "../../redux/actions";
 import MyFooter from "../MyFooter/MyFooter";
 import "./GamePage.scss";
 
