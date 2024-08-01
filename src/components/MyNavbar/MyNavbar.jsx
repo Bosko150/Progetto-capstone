@@ -28,12 +28,14 @@ const MyNavbar = () => {
   const cartItemCount = cartInfo ? cartInfo.games.length : 0;
 
   return (
-    <Navbar>
-      <Container fluid className="d-flex justify-content-between align-items-center m-0">
+    <Navbar className="navbar">
+      <Container fluid className="d-flex align-items-center m-0">
         <Navbar.Brand as={Link} to="/" className="navbar-brand">
           <img src={GVlogo} alt="logo" width="60" />
         </Navbar.Brand>
-        <SearchBar />
+        <div className="navbar-searchbar">
+          <SearchBar />
+        </div>
         <div className="navbar-login d-flex align-items-center">
           {isLogged ? (
             <>

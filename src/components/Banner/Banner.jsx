@@ -24,24 +24,26 @@ const Banner = ({ games }) => {
   const gameId = (randomGame && randomGame.id) || "Id Predefinito";
 
   return (
-    <Link className="banner-link" to={`/games/${gameId}`}>
-      <div
-        className="banner d-flex justify-content-center align-items-center"
-        style={{
-          backgroundImage: `url(${backgroundImg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <Container className="d-flex flex-column">
-          <h1>{title}</h1>
-          <div className="d-flex align-items-center">
-            <span className="bannerpercentage">{percentageDiscount}</span>
-            <h1>{discountedPrice}€</h1>
-          </div>
-        </Container>
-      </div>
-    </Link>
+    <div className="banner-container">
+      <Link className="banner-link" to={`/games/${gameId}`}>
+        <div
+          className="banner"
+          style={{
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <Container className="banner-content">
+            <h1>{title}</h1>
+            <div className="banner-details">
+              <span className="bannerpercentage">{percentageDiscount}</span>
+              <h1>{discountedPrice}€</h1>
+            </div>
+          </Container>
+        </div>
+      </Link>
+    </div>
   );
 };
 

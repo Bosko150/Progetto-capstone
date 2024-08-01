@@ -4,18 +4,21 @@
   align-items: center;
   padding: 10px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
-  //background-color: rgba(0, 0, 0, 0.353);
-  //backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  //border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-brand {
   flex: 0 1 auto;
+}
+
+.navbar-searchbar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar-login {
@@ -44,6 +47,7 @@
     border: 2px solid rgb(250, 53, 112);
   }
 }
+
 .dropdown-menu {
   background-color: #183063;
   color: #183063;
@@ -59,6 +63,7 @@
     color: #fff;
   }
 }
+
 .navbar-login .position-relative {
   display: flex;
   align-items: center;

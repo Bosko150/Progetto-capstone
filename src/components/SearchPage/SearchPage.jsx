@@ -64,7 +64,7 @@ const SearchPage = () => {
     <>
       <Container className="homepage-container">
         <Row className="searchpage-dropdowns justify-content-center">
-          <Col xs={12} md={6} lg={2}>
+          <Col className="px-4" xs={12} md={6} lg={2}>
             <Form.Group controlId="genreSelect">
               <Form.Label>Genre</Form.Label>
               <Form.Control as="select" value={genre} onChange={handleGenreChange} className="short-form-control">
@@ -84,7 +84,7 @@ const SearchPage = () => {
               </Form.Control>
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={2}>
+          <Col className="px-4" xs={12} md={6} lg={2}>
             <Form.Group controlId="orderBySelect">
               <Form.Label>Order By</Form.Label>
               <Form.Control as="select" value={orderBy} onChange={handleOrderByChange} className="short-form-control">
@@ -96,7 +96,7 @@ const SearchPage = () => {
               </Form.Control>
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={1}>
+          <Col className="p-0" xs={12} md={6} lg={1}>
             <Form.Group controlId="minPrice">
               <Form.Label>Min Price</Form.Label>
               <Form.Control
@@ -110,7 +110,8 @@ const SearchPage = () => {
               />
             </Form.Group>
           </Col>
-          <Col xs={12} md={6} lg={1}>
+
+          <Col className="p-0" xs={12} md={6} lg={1}>
             <Form.Group controlId="maxPrice">
               <Form.Label>Max Price</Form.Label>
               <Form.Control
