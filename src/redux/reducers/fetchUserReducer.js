@@ -3,12 +3,14 @@ import {
   TOGGLE_IS_LOGGED_OUT,
   GET_USER_LOGGED_TOKEN,
   GET_USER_LOGGED_PROFILE,
+  GET_USER_CART,
 } from "../actions/index";
 
 const initialState = {
   isLogged: false,
   token: "",
   user_info: null,
+  cart_info: null,
 };
 
 const fetchUserReducer = (state = initialState, action) => {
@@ -22,7 +24,7 @@ const fetchUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isLogged: false,
-        user_bearer: "",
+        token: "",
         user_info: null,
       };
     case GET_USER_LOGGED_TOKEN:
@@ -35,6 +37,11 @@ const fetchUserReducer = (state = initialState, action) => {
       return {
         ...state,
         user_info: action.payload,
+      };
+    case GET_USER_CART:
+      return {
+        ...state,
+        cart_info: action.payload,
       };
     default:
       return state;

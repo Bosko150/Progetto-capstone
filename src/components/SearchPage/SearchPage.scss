@@ -42,19 +42,6 @@ select.form-control {
   }
 }
 
-.dropdown-menu {
-  background-color: transparent;
-  color: #183063;
-  backdrop-filter: blur(30px);
-}
-
-.dropdown-item {
-  color: white;
-  &:hover {
-    background-color: #183063;
-    color: #fff;
-  }
-}
 .reset-button {
   background-color: rgb(250, 53, 112);
   color: #fff;

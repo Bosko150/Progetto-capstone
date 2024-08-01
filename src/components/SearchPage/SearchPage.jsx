@@ -39,8 +39,8 @@ const SearchPage = () => {
 
   const handleGenreChange = (e) => setGenre(e.target.value);
   const handleOrderByChange = (e) => setOrderBy(e.target.value);
-  const handleMinPriceChange = (e) => setMinPrice(e.target.value);
-  const handleMaxPriceChange = (e) => setMaxPrice(e.target.value);
+  const handleMinPriceChange = (e) => setMinPrice(Math.max(0, Math.min(e.target.value, 200)));
+  const handleMaxPriceChange = (e) => setMaxPrice(Math.max(0, Math.min(e.target.value, 200)));
 
   const handleResetFilters = () => {
     setGenre("");
@@ -64,7 +64,7 @@ const SearchPage = () => {
     <>
       <Container className="homepage-container">
         <Row className="searchpage-dropdowns justify-content-center">
-          <Col class xs={12} md={6} lg={2}>
+          <Col xs={12} md={6} lg={2}>
             <Form.Group controlId="genreSelect">
               <Form.Label>Genre</Form.Label>
               <Form.Control as="select" value={genre} onChange={handleGenreChange} className="short-form-control">
@@ -105,6 +105,8 @@ const SearchPage = () => {
                 value={minPrice}
                 onChange={handleMinPriceChange}
                 className="short-form-control-2"
+                min="0"
+                max="200"
               />
             </Form.Group>
           </Col>
@@ -117,6 +119,8 @@ const SearchPage = () => {
                 value={maxPrice}
                 onChange={handleMaxPriceChange}
                 className="short-form-control-2"
+                min="0"
+                max="200"
               />
             </Form.Group>
           </Col>

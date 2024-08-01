@@ -99,16 +99,15 @@ body {
 
 .modal-body img {
   width: 100%;
-  height: auto; /* Mantieni le proporzioni */
+  height: auto;
 }
 
-/* Modal - Imposta una dimensione minima */
 .modal-dialog {
-  max-width: 90%; /* Aumenta la dimensione massima del modal */
+  max-width: 90%;
 }
 
 .modal-dialog.modal-lg {
-  max-width: 80%; /* Aumenta ulteriormente per modal grandi */
+  max-width: 80%;
 }
 .gamepage-banner {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%);
@@ -123,4 +122,18 @@ body {
 }
 .gamepage-container {
   margin-top: 15vh;
+}
+.add-to-cart {
+  background-color: rgb(250, 53, 112);
+  color: white;
+  border: none;
+  font-weight: 500;
+  padding: 0.5rem 4rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.add-to-cart:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 }

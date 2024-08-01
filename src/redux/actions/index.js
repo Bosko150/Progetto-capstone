@@ -8,6 +8,8 @@ export const GET_USER_LOGGED_PROFILE = "GET_USER_LOGGED_PROFILE";
 export const GET_USER_LOGGED_TOKEN = "GET_USER_LOGGED_TOKEN";
 export const TOGGLE_IS_LOGGED = "TOGGLE_IS_LOGGED";
 export const TOGGLE_IS_LOGGED_OUT = "TOGGLE_IS_LOGGED_OUT";
+export const GET_USER_CART = "GET_USER_CART";
+export const ADD_GAME_TO_CART = "ADD_GAME_TO_CART";
 
 export const fetchGamesAction = () => {
   return async (dispatch) => {
@@ -83,12 +85,19 @@ export const fetchUserAction = (loginObject, navigate, setError) => {
     try {
       const response = await axios.post("http://localhost:3001/auth/login", loginObject);
       console.log("Response:", response.data);
+      const token = response.data.accessToken;
+
       dispatch({
         type: GET_USER_LOGGED_TOKEN,
         payload: response.data,
       });
-      const token = response.data.accessToken;
-      dispatch(fetchUserInfoAction(token));
+
+      const userInfo = await dispatch(fetchUserInfoAction(token));
+
+      const userId = userInfo.id;
+
+      await dispatch(fetchUserCartAction(userId));
+
       navigate("/");
     } catch (err) {
       console.error("Error logging in:", err.response?.data?.message || err.message);
@@ -108,8 +117,57 @@ export const fetchUserInfoAction = (token) => {
         type: GET_USER_LOGGED_PROFILE,
         payload: response.data,
       });
+      return response.data;
     } catch (err) {
       console.error("Error fetching user info:", err.response?.data?.message || err.message);
+    }
+  };
+};
+
+export const fetchUserCartAction = (userId) => {
+  return async (dispatch, getState) => {
+    const token = getState().user.token.accessToken;
+    try {
+      const response = await axios.get(`http://localhost:3001/cart/user/${userId}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log("User Cart Response:", response.data);
+      dispatch({
+        type: GET_USER_CART,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.error("Error fetching user cart:", err.response?.data?.message || err.message);
+    }
+  };
+};
+
+export const addGameToCartAction = (cartId, gameId) => {
+  return async (dispatch, getState) => {
+    const token = getState().user.token.accessToken;
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/cart/add/${cartId}/${gameId}`,
+        {},
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      console.log("Add to cart response:", response.data);
+
+      dispatch({
+        type: ADD_GAME_TO_CART,
+        payload: response.data,
+      });
+
+      const userId = getState().user.user_info.id;
+      if (userId) {
+        dispatch(fetchUserCartAction(userId));
+      } else {
+        console.error("User ID is missing");
+      }
+    } catch (err) {
+      console.error("Error adding to cart:", err.response?.data?.message || err.message);
     }
   };
 };

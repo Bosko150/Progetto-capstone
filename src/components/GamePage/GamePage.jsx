@@ -6,7 +6,7 @@ import { RiPriceTag3Line } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchSingleGameAction } from "../../redux/actions";
+import { fetchSingleGameAction, addGameToCartAction, fetchUserCartAction } from "../../redux/actions";
 import MyFooter from "../MyFooter/MyFooter";
 import "./GamePage.scss";
 
@@ -16,7 +16,8 @@ const GamePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const gameData = useSelector((state) => state.single_game.game);
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLogged);
+  const cartId = useSelector((state) => state.user.cart_info?.id);
   const params = useParams();
   const gameId = params.gameId;
 
@@ -33,7 +34,13 @@ const GamePage = () => {
 
   const handleAddToCart = () => {
     if (isLoggedIn) {
-      // Logica per aggiungere al carrello
+      if (cartId) {
+        dispatch(addGameToCartAction(cartId, gameId)).catch((error) => {
+          console.error("Failed to add game to cart:", error);
+        });
+      } else {
+        console.error("Cart ID is missing");
+      }
     } else {
       navigate("/login");
     }
