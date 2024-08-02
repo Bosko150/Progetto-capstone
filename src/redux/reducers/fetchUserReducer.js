@@ -26,6 +26,7 @@ const fetchUserReducer = (state = initialState, action) => {
         isLogged: false,
         token: "",
         user_info: null,
+        cart_info: null,
       };
     case GET_USER_LOGGED_TOKEN:
       return {

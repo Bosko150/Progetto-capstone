@@ -1,0 +1,111 @@
+.cart-container {
+  background-color: #23234b;
+  border-radius: 15px;
+}
+.summary-container {
+  background-color: #030221;
+  border-radius: 15px;
+  padding: 20px;
+}
+.cart-icon {
+  color: rgb(250, 53, 112);
+}
+.cartpage-container {
+  margin-top: 200px;
+}
+.cart-container p {
+  color: rgba(146, 187, 250, 0.535);
+}
+.discover-games-btn {
+  background-color: transparent;
+  color: white;
+  border-color: rgba(146, 187, 250, 0.535);
+  font-size: 1.2rem;
+  padding: 12px;
+}
+.official-price,
+.discount-price {
+  color: rgba(146, 187, 250, 0.535);
+}
+.checkout-btn {
+  background-color: rgb(250, 53, 112);
+  color: white;
+  border-color: rgb(250, 53, 112);
+  font-size: 1.2rem;
+  padding-block: 10px;
+  padding-inline: 50px;
+}
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.separator-line {
+  flex: 1;
+  height: 1px;
+  background-color: rgba(146, 187, 250, 0.535);
+  border: none;
+  margin: 0 10px;
+}
+
+.separator-text {
+  color: rgba(146, 187, 250, 0.535);
+  font-size: 18px;
+}
+.continue-shopping {
+  color: rgba(146, 187, 250, 0.535);
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    color: white;
+  }
+}
+.cart-game-img {
+  max-width: 170px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+.cart-game-title {
+  white-space: nowrap;
+  padding-left: 20px;
+}
+.quantity-button {
+  cursor: pointer;
+  background-color: #18183fdc;
+  height: 30px;
+  width: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &:hover {
+    background-color: rgb(250, 53, 112);
+  }
+}
+.cart-separator {
+  border: none;
+  border-top: 1px solid rgba(146, 187, 250, 0.535);
+  margin: 10px 30px;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-primary.disabled {
+  background-color: rgb(250, 53, 112);
+
+  border: none;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.game-quantity {
+  width: 20px;
+}

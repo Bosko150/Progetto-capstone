@@ -10,6 +10,7 @@ export const TOGGLE_IS_LOGGED = "TOGGLE_IS_LOGGED";
 export const TOGGLE_IS_LOGGED_OUT = "TOGGLE_IS_LOGGED_OUT";
 export const GET_USER_CART = "GET_USER_CART";
 export const ADD_GAME_TO_CART = "ADD_GAME_TO_CART";
+export const REMOVE_GAME_FROM_CART = "REMOVE_GAME_FROM_CART";
 
 export const fetchGamesAction = () => {
   return async (dispatch) => {
@@ -157,6 +158,35 @@ export const addGameToCartAction = (cartId, gameId) => {
 
       dispatch({
         type: ADD_GAME_TO_CART,
+        payload: response.data,
+      });
+
+      const userId = getState().user.user_info.id;
+      if (userId) {
+        dispatch(fetchUserCartAction(userId));
+      } else {
+        console.error("User ID is missing");
+      }
+    } catch (err) {
+      console.error("Error adding to cart:", err.response?.data?.message || err.message);
+    }
+  };
+};
+export const removeGameFromCartAction = (cartId, gameId) => {
+  return async (dispatch, getState) => {
+    const token = getState().user.token.accessToken;
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/cart/remove/${cartId}/${gameId}`,
+        {},
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      console.log("Add to cart response:", response.data);
+
+      dispatch({
+        type: REMOVE_GAME_FROM_CART,
         payload: response.data,
       });
 
