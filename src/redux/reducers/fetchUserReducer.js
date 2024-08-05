@@ -4,6 +4,8 @@ import {
   GET_USER_LOGGED_TOKEN,
   GET_USER_LOGGED_PROFILE,
   GET_USER_CART,
+  UPLOAD_AVATAR,
+  EDIT_PROFILE,
 } from "../actions/index";
 
 const initialState = {
@@ -43,6 +45,19 @@ const fetchUserReducer = (state = initialState, action) => {
       return {
         ...state,
         cart_info: action.payload,
+      };
+    case UPLOAD_AVATAR:
+      return {
+        ...state,
+        user_info: {
+          ...state.user_info,
+          profilePic: action.payload,
+        },
+      };
+    case EDIT_PROFILE:
+      return {
+        ...state,
+        user_info: action.payload,
       };
     default:
       return state;

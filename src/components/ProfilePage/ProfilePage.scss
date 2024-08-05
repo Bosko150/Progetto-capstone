@@ -1,0 +1,39 @@
+.profilepage-pic {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profilepage-container {
+  margin-top: 200px;
+}
+.profilepage-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-top: 15px;
+  opacity: 0.5;
+  color: rgba(146, 187, 250, 0.535);
+}
+.profilepage-username {
+  font-weight: 500;
+}
+.edit-profile {
+  background-color: #23234bba;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  justify-content: center;
+}
+.edit-profile-form {
+  max-width: 300px;
+}
+.editprofile-button {
+  background-color: rgb(250, 53, 112);
+  color: white;
+  border-color: rgb(250, 53, 112);
+  padding-block: 10px;
+}
+.profile-row {
+  max-width: 450px;
+}

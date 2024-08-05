@@ -11,6 +11,8 @@ export const TOGGLE_IS_LOGGED_OUT = "TOGGLE_IS_LOGGED_OUT";
 export const GET_USER_CART = "GET_USER_CART";
 export const ADD_GAME_TO_CART = "ADD_GAME_TO_CART";
 export const REMOVE_GAME_FROM_CART = "REMOVE_GAME_FROM_CART";
+export const UPLOAD_AVATAR = "UPLOAD_AVATAR";
+export const EDIT_PROFILE = "EDIT_PROFILE";
 
 export const fetchGamesAction = () => {
   return async (dispatch) => {
@@ -198,6 +200,52 @@ export const removeGameFromCartAction = (cartId, gameId) => {
       }
     } catch (err) {
       console.error("Error adding to cart:", err.response?.data?.message || err.message);
+    }
+  };
+};
+export const uploadAvatarAction = (file, userId) => {
+  return async (dispatch, getState) => {
+    try {
+      const token = getState().user.token.accessToken;
+      const formData = new FormData();
+      formData.append("avatar", file); // Usa "avatar" per il campo del file
+      // L'ID dell'utente viene passato nell'URL, non nei dati del modulo
+
+      const response = await axios.post(`http://localhost:3001/users/${userId}/avatar`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      dispatch({
+        type: UPLOAD_AVATAR,
+        payload: response.data,
+      });
+
+      return response.data;
+    } catch (err) {
+      console.error("Error uploading avatar:", err.message);
+      throw err;
+    }
+  };
+};
+
+export const editProfileAction = (profileData) => {
+  return async (dispatch, getState) => {
+    try {
+      const token = getState().user.token.accessToken;
+      const response = await axios.put("http://localhost:3001/users/update", profileData, {
+        headers: { Authorization: "Bearer " + token },
+      });
+
+      dispatch({
+        type: EDIT_PROFILE,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.error("Error editing profile:", err.message);
+      throw err;
     }
   };
 };

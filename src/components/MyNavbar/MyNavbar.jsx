@@ -40,7 +40,7 @@ const MyNavbar = () => {
           {isLogged ? (
             <>
               <Link to="/cart" className="me-3 position-relative">
-                <BsCart4 size={30} className="login-icon me-1" />
+                <BsCart4 size={30} className="cartlink-icon me-1" />
                 {cartItemCount > 0 && <span className="cart-badge">{cartItemCount}</span>}
               </Link>
               <Dropdown align="end">

@@ -3,8 +3,8 @@
   outline: none;
   border: none;
   background-color: transparent;
-  max-width: 400px; // Dimensione massima per le card
-  position: relative; // Aggiunto per posizionare .percentage assolutamente
+  max-width: 400px;
+  position: relative;
 
   img {
     border-radius: 15px;
@@ -17,14 +17,14 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     font-size: 13px;
     font-weight: 500;
-    position: absolute; // Posizione assoluta rispetto al contenitore
+    position: absolute;
     bottom: 37px;
     left: 0;
     border: 1px solid rgb(250, 53, 112);
     padding: 2px;
     border-top-right-radius: 10px;
     background-color: rgb(250, 53, 112);
-    z-index: 2; // Assicurati che l'etichetta sia sopra l'immagine
+    z-index: 2;
   }
 
   &:hover {
@@ -41,7 +41,7 @@
 
   video {
     width: 100%;
-    min-height: 100%; // Mantiene il rapporto di aspetto
+    min-height: 100%;
     display: block;
     border-radius: 15px;
     margin-bottom: 4px;

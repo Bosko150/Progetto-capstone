@@ -25,12 +25,17 @@
   flex: 0 1 auto;
 }
 
-.login-icon {
+.login-icon,
+.cartlink-icon {
   color: white;
   transition: color 0.3s ease;
   &:hover {
     color: rgb(250, 53, 112);
   }
+}
+
+.login-icon {
+  margin-right: 15px;
 }
 
 .dropdown-toggle {
