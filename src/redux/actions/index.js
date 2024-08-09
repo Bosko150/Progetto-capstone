@@ -208,8 +208,7 @@ export const uploadAvatarAction = (file, userId) => {
     try {
       const token = getState().user.token.accessToken;
       const formData = new FormData();
-      formData.append("avatar", file); // Usa "avatar" per il campo del file
-      // L'ID dell'utente viene passato nell'URL, non nei dati del modulo
+      formData.append("avatar", file);
 
       const response = await axios.post(`http://localhost:3001/users/${userId}/avatar`, formData, {
         headers: {

@@ -3,15 +3,22 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BsCart4 } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { addGameToCartAction, removeGameFromCartAction } from "../../redux/actions";
-
+import { loadStripe } from "@stripe/stripe-js";
+import { useState } from "react";
 import "./CartPage.scss";
+
+const stripePromise = loadStripe(
+  "pk_test_51Pl91z06pVcy8TsDh6koN6pcZbw4y6zqDE6y2TXzClLXMBpq6J4gvsbyR5d1HAiZ2IVVrscVdZVQtKSA7RjVNiDF00BdOlbWOw"
+);
 
 const CartPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const cartGames = useSelector((state) => state.user.cart_info.games);
   const cartId = useSelector((state) => state.user.cart_info.id);
+  const token = useSelector((state) => state.user.token.accessToken);
 
   const handleDiscoverGamesClick = () => {
     navigate("/search");
@@ -25,7 +32,6 @@ const CartPage = () => {
     dispatch(removeGameFromCartAction(cartId, gameId));
   };
 
-  // Raggruppa i giochi e calcola il subtotal
   const groupedGames = cartGames.reduce((acc, game) => {
     const existingGame = acc.find((g) => g.id === game.id);
     if (existingGame) {
@@ -38,12 +44,56 @@ const CartPage = () => {
     return acc;
   }, []);
 
-  // Calcola il subtotal, official price e discount
   const officialPrice = groupedGames.reduce((total, game) => total + (game.originalTotalPrice || 0), 0).toFixed(2);
   const subtotal = groupedGames.reduce((total, game) => total + (game.totalPrice || 0), 0).toFixed(2);
   const discount = (officialPrice - subtotal).toFixed(2);
 
   const isEmpty = groupedGames.length === 0;
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    const stripe = await stripePromise;
+
+    try {
+      const response = await fetch("http://localhost:3001/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(
+          cartGames.map((game) => ({
+            id: game.id,
+            title: game.title,
+            discountedPrice: game.discountedPrice,
+            currency: "eur",
+          }))
+        ),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const session = await response.json();
+
+      if (!session.id) {
+        throw new Error("Invalid session ID");
+      }
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container className="cartpage-container">
@@ -67,9 +117,11 @@ const CartPage = () => {
                 <div key={game.id}>
                   <Row className="justify-content-between">
                     <Col xs={8} className="d-flex align-items-center p-3">
-                      <div>
-                        <img className="cart-game-img" src={game.gameImg} alt={`game img ${game.title}`} />
-                      </div>
+                      <Link to={`/games/${game.id}`}>
+                        <div>
+                          <img className="cart-game-img" src={game.gameImg} alt={`game img ${game.title}`} />
+                        </div>
+                      </Link>
                       <div>
                         <h5 className="cart-game-title">{game.title}</h5>
                       </div>
@@ -109,8 +161,12 @@ const CartPage = () => {
               <h5>Subtotal</h5>
               <h5>{subtotal}€</h5>
             </div>
-            <button className={`btn btn-primary checkout-btn mt-4 ${isEmpty ? "disabled" : ""}`} disabled={isEmpty}>
-              Go to payment
+            <button
+              className={`btn btn-primary checkout-btn mt-4 ${isEmpty ? "disabled" : ""}`}
+              disabled={isEmpty || loading}
+              onClick={handleCheckout}
+            >
+              {loading ? "Processing..." : "Go to payment"}
             </button>
             <div className="separator">
               <hr className="separator-line" />
